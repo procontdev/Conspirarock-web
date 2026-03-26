@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
+import ChatWidget from "@/components/chat/ChatWidget";
+
 export const metadata: Metadata = {
   title: "ConspiraRock",
   description:
@@ -14,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <ChatWidget />
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -1,7 +1,9 @@
 import Button from "../ui/Button";
 import Tag from "../ui/Tag";
+import Link from "next/link";
 
 type EpisodeCardProps = {
+    id: string;
   guestName: string;
   title: string;
   description: string;
@@ -11,6 +13,7 @@ type EpisodeCardProps = {
 };
 
 export default function EpisodeCard({
+    id,
   guestName,
   title,
   description,
@@ -44,6 +47,16 @@ export default function EpisodeCard({
         <div className="mt-6">
           <Button href={youtubeUrl}>Ver episodio</Button>
         </div>
+        <div className="mt-4">
+  <div className="mt-4 border-t border-white/10 pt-4">
+  <Link
+    href={`/episodios/${id}`}
+    className="text-sm uppercase tracking-[0.2em] text-[var(--cr-amber)] transition-opacity hover:opacity-80"
+  >
+    Abrir Conspira-Files
+  </Link>
+</div>
+</div>
       </div>
     </article>
   );

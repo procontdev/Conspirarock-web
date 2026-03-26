@@ -38,10 +38,22 @@ export default function TrailerSection() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href={siteConfig.youtubeUrl}>Ver trailer</Button>
-              <Button href={siteConfig.youtubeUrl} variant="secondary">
-                Ir al canal
-              </Button>
+              <Button
+  href={siteConfig.trailerWatchUrl}
+  target="_blank"
+  rel="noreferrer"
+>
+  Ver trailer
+</Button>
+
+<Button
+  href={siteConfig.youtubeUrl}
+  variant="secondary"
+  target="_blank"
+  rel="noreferrer"
+>
+  Ir al canal
+</Button>
             </div>
           </div>
 

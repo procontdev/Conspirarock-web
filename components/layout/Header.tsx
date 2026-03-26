@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Container from "./Container";
@@ -28,7 +29,16 @@ export default function Header() {
     >
       <Container className="flex h-20 items-center justify-between">
         <Link href="#inicio" className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl border border-[rgba(217,138,43,0.35)] bg-white/5 shadow-[0_0_30px_rgba(179,32,32,0.15)]" />
+          <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-[rgba(217,138,43,0.35)] bg-black/40 shadow-[0_0_30px_rgba(179,32,32,0.18)]">
+            <Image
+              src="/images/conspirarock-header.jpg"
+              alt="ConspiraRock"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+
           <div>
             <p className="text-lg font-semibold uppercase tracking-[0.12em] text-[var(--cr-text)]">
               ConspiraRock
@@ -52,7 +62,12 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 sm:flex">
-          <Button href={siteConfig.youtubeUrl} variant="secondary">
+          <Button
+            href={siteConfig.youtubeUrl}
+            variant="secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Ver en YouTube
           </Button>
           <Button href="#abrir-senal">Abrir señal</Button>

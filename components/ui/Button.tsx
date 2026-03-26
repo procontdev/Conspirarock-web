@@ -7,6 +7,8 @@ type ButtonProps = {
   href?: string;
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
+  target?: string;
+  rel?: string;
 };
 
 const baseClasses =
@@ -26,12 +28,14 @@ export default function Button({
   href,
   variant = "primary",
   className,
+  target,
+  rel,
 }: ButtonProps) {
   const classes = clsx(baseClasses, variants[variant], className);
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target} rel={rel}>
         {children}
       </Link>
     );

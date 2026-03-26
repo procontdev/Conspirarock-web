@@ -4,6 +4,8 @@ import Button from "../ui/Button";
 import GuestCard from "./GuestCard";
 import { guests } from "../../data/guests";
 
+const publishedGuests = guests.filter((guest) => guest.status === "published");
+
 export default function GuestsSection() {
   return (
     <section id="invitados" className="py-24 sm:py-28">
@@ -16,15 +18,12 @@ export default function GuestsSection() {
         />
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {guests.map((guest) => (
-            <GuestCard
-              key={guest.id}
-              name={guest.name}
-              subtitle={guest.subtitle}
-              topic={guest.topic}
-              image={guest.image}
-            />
-          ))}
+          {publishedGuests.map((guest) => (
+  <GuestCard
+    key={guest.id}
+    {...guest}
+  />
+))}
         </div>
 
         <div className="mt-10 flex justify-center">

@@ -4,8 +4,13 @@ import Button from "../ui/Button";
 import EpisodeCard from "./EpisodeCard";
 import { episodes } from "../../data/episodes";
 
+const publishedEpisodes = episodes.filter(
+  (episode) => episode.status === "published"
+);
+
 export default function EpisodesSection() {
   return (
+    
     <section id="episodios" className="py-24 sm:py-28">
       <Container>
         <SectionHeading
@@ -16,17 +21,18 @@ export default function EpisodesSection() {
         />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
-          {episodes.map((episode) => (
-            <EpisodeCard
-              key={episode.id}
-              guestName={episode.guestName}
-              title={episode.title}
-              description={episode.description}
-              thumbnail={episode.thumbnail}
-              youtubeUrl={episode.youtubeUrl}
-              tags={episode.tags}
-            />
-          ))}
+          {publishedEpisodes.map((episode) => (
+  <EpisodeCard
+    key={episode.id}
+    id={episode.id}
+    guestName={episode.guestName}
+    title={episode.title}
+    description={episode.description}
+    thumbnail={episode.thumbnail}
+    youtubeUrl={episode.youtubeUrl}
+    tags={episode.tags}
+  />
+))}
         </div>
 
         <div className="mt-10 flex justify-center">
