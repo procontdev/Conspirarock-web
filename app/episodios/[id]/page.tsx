@@ -9,19 +9,21 @@ import HighlightedQuotes from "@/components/episodes/detail/HighlightedQuotes";
 import EditorialNote from "@/components/episodes/detail/EditorialNote";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function EpisodeDetailPage({ params }: PageProps) {
-  const episode = episodes.find((item) => item.id === params.id);
+export default async function EpisodeDetailPage({ params }: PageProps) {
+  const { id } = await params;
 
-if (!episode || episode.status !== "published") {
-  notFound();
-}
+  const episode = episodes.find((item) => item.id === id);
 
-  const conspira = conspiraFilesByEpisode[params.id];
+  if (!episode || episode.status !== "published") {
+    notFound();
+  }
+
+  const conspira = conspiraFilesByEpisode[id];
 
   return (
     <main className="pb-24 pt-16 sm:pb-28 sm:pt-20">
@@ -33,19 +35,19 @@ if (!episode || episode.status !== "published") {
             <KeyTopics topics={conspira.keyTopics} />
 
             <ConspiraFilesSection
-  eyebrow="Conspira-Files"
-  title="Núcleo del episodio"
-  intro="Aquí se concentra el corazón de la conversación: industria, autenticidad, mercado, desgaste creativo y fracturas internas de la música."
-  items={conspira.coreFiles}
-/>
+              eyebrow="Conspira-Files"
+              title="Núcleo del episodio"
+              intro="Aquí se concentra el corazón de la conversación: industria, autenticidad, mercado, desgaste creativo y fracturas internas de la música."
+              items={conspira.coreFiles}
+            />
 
             {conspira.mythReferences && conspira.mythReferences.length > 0 ? (
               <ConspiraFilesSection
-  eyebrow="Conspira-Files"
-  title="Mitologías y referencias conspirativas"
-  intro="Una capa paralela del episodio: teorías, leyendas y figuras del imaginario musical que expanden el tono conspirativo de la conversación."
-  items={conspira.mythReferences}
-/>
+                eyebrow="Conspira-Files"
+                title="Mitologías y referencias conspirativas"
+                intro="Una capa paralela del episodio: teorías, leyendas y figuras del imaginario musical que expanden el tono conspirativo de la conversación."
+                items={conspira.mythReferences}
+              />
             ) : null}
 
             <HighlightedQuotes quotes={conspira.highlightedQuotes} />
@@ -57,15 +59,15 @@ if (!episode || episode.status !== "published") {
         ) : (
           <section className="panel-surface mt-12 rounded-[28px] p-8">
             <p className="text-sm uppercase tracking-[0.28em] text-[var(--cr-amber)]">
-  Conspira-Files
-</p>
-<h2 className="mt-4 text-3xl uppercase text-[var(--cr-text)]">
-  Conspira-Files en preparación
-</h2>
-<p className="mt-4 max-w-3xl text-base leading-7 text-[var(--cr-text-soft)]">
-  Este episodio ya está publicado, pero su archivo expandido de casos,
-  referencias y frases destacadas todavía está en preparación.
-</p>
+              Conspira-Files
+            </p>
+            <h2 className="mt-4 text-3xl uppercase text-[var(--cr-text)]">
+              Conspira-Files en preparación
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--cr-text-soft)]">
+              Este episodio ya está publicado, pero su archivo expandido de casos,
+              referencias y frases destacadas todavía está en preparación.
+            </p>
           </section>
         )}
       </Container>
